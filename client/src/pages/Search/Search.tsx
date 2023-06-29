@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react';
+
 import {
   Btn,
   Box,
@@ -9,8 +10,9 @@ import {
   Title,
   Contents,
 } from './Search.style';
-import useGeolocation from 'react-hook-geolocation';
 import axios from 'axios';
+
+import useGeolocation from 'react-hook-geolocation';
 
 const Search = () => {
   const geolocation = useGeolocation();
