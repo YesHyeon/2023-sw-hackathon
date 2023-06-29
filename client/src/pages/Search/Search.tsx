@@ -16,6 +16,14 @@ import axios from "axios";
 import useGeolocation from "react-hook-geolocation";
 import Loading from "../../components/Loading/Loading";
 import { useNavigate } from "react-router-dom";
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Polygon,
+  Marker,
+  Circle,
+  InfoWindow,
+} from "@react-google-maps/api";
 
 const Search = () => {
   const geolocation = useGeolocation();
@@ -60,7 +68,7 @@ const Search = () => {
 
   const postInfo = async () => {
     if (pattern.test(value)) {
-      return alert("ㄴㄴ");
+      return alert("오타가 감지되었습니다. ");
     }
 
     SetIsLoading(true);
