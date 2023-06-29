@@ -59,7 +59,7 @@ const Search = () => {
     SetIsLoading(true);
     setTimeout(() => {
       SetIsLoading(false);
-      navigate('/result');
+      navigate('/result', { state: value });
     }, 3000);
     const data = await axios
       .post(`http://localhost:3000/hospital`, {
