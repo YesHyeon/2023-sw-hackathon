@@ -2,19 +2,22 @@ const { default: axios } = require("axios");
 const { Builder, By, Key, until } = require("selenium-webdriver");
 const chrome = require("selenium-webdriver/chrome");
 const cheerio = require("cheerio");
+
 //require("chromedriver");
 const run = async (req, res) => {
-  // 크롬 드라이버 실행
-  let driver = await new Builder().forBrowser("chrome").build();
-  // headless로 크롬 드라이버 실행
-  //   let driver = await new Builder()
-  //     .forBrowser("chrome")
-  //     .setChromeOptions(
-  //       new chrome.Options()
-  //         .headless()
-  //         .addArguments("--disable-gpu", "window-size=1920x1080", "lang=ko_KR")
-  //     )
-  //     .build();
+  // // 크롬 드라이버 실행
+  // let driver = await new Builder().forBrowser("chrome").build();
+  //headless로 크롬 드라이버 실행
+  let driver = await new Builder()
+    .forBrowser("chrome")
+    .setChromeOptions(
+      new chrome.Options()
+        .headless()
+        .addArguments(
+          "user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.20 Safari/537.36"
+        )
+    )
+    .build();
 
   try {
     const keyword = req.query.keyword;
