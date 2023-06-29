@@ -7,6 +7,7 @@ import KakaoRedirectHandler from "./components/KakaoRedirectHandler";
 import Community from "./pages/Community/Community";
 import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
+import Result from "./pages/Result/Result";
 
 function App() {
     return (
@@ -17,6 +18,7 @@ function App() {
                 <Route path="/community" element={<Community />} />
                 <Route path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />
+                <Route path="/result" element={<Result />} />
             </Routes>
         </Router>
     );

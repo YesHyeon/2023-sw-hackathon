@@ -4,7 +4,7 @@ import {
     Box,
     Container,
     Input,
-    BigTitle,
+    TitleBox,
     Wraaper,
     Title,
     Contents,
@@ -17,13 +17,13 @@ function Search() {
         <Wraaper>
             <Container>
                 <Box>
-                    <BigTitle>
+                    <TitleBox>
                         <Title>가치가요</Title>
                         <Contents>
                             병 이름을 입력하시면 우리 집 근처, 가장 알맞은
                             병원을 추천해드려요!
                         </Contents>
-                    </BigTitle>
+                    </TitleBox>
                     <Input
                         onChange={onChange}
                         type="text"

@@ -10,7 +10,7 @@ export const Container = styled.div`
     background-color: #f2f2f2;
     justify-content: center;
 `;
-export const BigTitle = styled.div`
+export const TitleBox = styled.div`
     display: flex;
     justify-content: center;
     gap: 20px;
