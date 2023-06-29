@@ -37,7 +37,7 @@ app.use("/api/hospital", async (req, res) => {
   queryParams +=
     "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent(1);
   queryParams +=
-    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(4);
+    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(10);
   const response = await axios.get(url + queryParams);
   const hospitals = response.data.response.body.items.item;
   // 잠시 주석
@@ -46,6 +46,7 @@ app.use("/api/hospital", async (req, res) => {
   // });
   const results = [];
   let count = 0;
+  const maxLength = 100;
   for (let i = 0; i < hospitals.length; i++) {
     const reviews = await crawling(hospitals[i], keyword, type);
     if (reviews == null) {
@@ -62,6 +63,11 @@ app.use("/api/hospital", async (req, res) => {
     }
   }
   console.log(results);
+
+  // nodeSummary.summarize(inputString, (summary) => {
+  //   const summarizedString = summary.substring(0, maxLength);
+  //   console.log(summarizedString); // Output: 요약된 문자열
+  // });
 });
 
 app.use("/api/crawling", require("./routes/crawling"));
