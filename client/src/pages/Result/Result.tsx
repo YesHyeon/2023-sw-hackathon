@@ -16,8 +16,12 @@ import {
   Label,
   Name,
 } from './Result.style';
+import { useLocation } from 'react-router';
 
 function Result() {
+  const { state } = useLocation();
+  console.log(state);
+
   return (
     <Wraaper>
       <Container>
@@ -30,7 +34,7 @@ function Result() {
             </Contents>
           </TitleBox>
           <DetailBox>
-            <Detail>"백내장"에 대한 검색 결과입니다</Detail>
+            <Detail>{`${state}에 대한 검색 결과입니다`}</Detail>
             <Span>후기가 좋은 순서대로 위에서부터 나열되었습니다.</Span>
           </DetailBox>
           <ResultBox>
