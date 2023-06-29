@@ -22,16 +22,40 @@ function Result() {
   const { state } = useLocation();
   console.log(state);
 
+  const data = [
+    {
+      hospital: '오름정형외과의원',
+      distance: '13km',
+      location: '충남 천안시 서북구 불당25로 176 율곡스퀘어 6층',
+    },
+    {
+      hospital: '서울프라임병원',
+      distance: '10km',
+      location: '충남 천안시 서북구 불당25로 226 골든스퀘어Ⅱ2층~4층',
+    },
+    {
+      hospital: '마디손정형외과병원',
+      distance: '13km',
+      location: '충남 천안시 서북구 불당34길 18',
+    },
+    {
+      hospital: '연세나무병원',
+      distance: '3km',
+      location: '충남 천안시 서북구 불당21로 67-18 7~9층 연세나무병원',
+    },
+    {
+      hospital: '쌍용메디컬의원',
+      distance: '34km',
+      location: '충남 천안시 서북구 월봉로 85 쌍용메디칼',
+    },
+  ];
+
   return (
     <Wraaper>
       <Container>
         <Box>
           <TitleBox>
             <Title>가치가요</Title>
-            <Contents>
-              병 이름을 입력하시면 우리 집 근처, 가장 알맞은 병원을
-              추천해드려요!
-            </Contents>
           </TitleBox>
           <DetailBox>
             <Detail>{`${state}에 대한 검색 결과입니다`}</Detail>
@@ -39,115 +63,31 @@ function Result() {
           </DetailBox>
           <ResultBox>
             <List>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                      marginLeft: 10,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
-              <Item>
-                <ItemInfo>
-                  <Label>영업중</Label>
-                  <Name>땡땡 안과</Name>
-                  <Span>400m</Span>
-                </ItemInfo>
-                <ItemInfo>
-                  <span style={{ fontSize: 11 }}>상세 주소</span>
-                  <span
-                    style={{
-                      color: '#747474',
-                      fontSize: 11,
-                    }}
-                  >
-                    서울시 XX구 XX동 XX로 XXXX건물 XXX호
-                  </span>
-                </ItemInfo>
-              </Item>
+              {data.map((item) => {
+                return (
+                  <Item>
+                    <ItemInfo>
+                      <Label>영업중</Label>
+                      <Name>{item.hospital}</Name>
+                      <Span>{item.distance}</Span>
+                    </ItemInfo>
+                    <ItemInfo>
+                      <span style={{ fontSize: 11, marginLeft: 5 }}>
+                        상세 주소
+                      </span>
+                      <span
+                        style={{
+                          color: '#747474',
+                          fontSize: 11,
+                          marginLeft: 3,
+                        }}
+                      >
+                        {item.location}
+                      </span>
+                    </ItemInfo>
+                  </Item>
+                );
+              })}
             </List>
           </ResultBox>
           <Btn>처음으로 돌아가기</Btn>

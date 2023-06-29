@@ -85,20 +85,22 @@ export const List = styled.ul`
   gap: 10px;
   padding-left: 0px;
 `;
+
 export const Item = styled.li`
   display: flex;
   flex-direction: column;
-  width: 313px;
+  justify-content: center;
+  width: 330px;
   height: 74px;
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 9px;
   opacity: 1;
-  margin-right: 10px;
 `;
 export const ItemInfo = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
+  width: 100%;
   gap: 10px;
 `;
 
