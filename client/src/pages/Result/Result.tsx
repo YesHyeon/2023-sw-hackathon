@@ -18,6 +18,7 @@ import {
   Label,
   Name,
   Img,
+  Medal,
 } from "./Result.style";
 import { useLocation, useNavigate } from "react-router";
 import Loading from "../../components/Loading/Loading";
@@ -36,26 +37,36 @@ function Result() {
       hospital: "오름정형외과의원",
       distance: "13km",
       location: "충남 천안시 서북구 불당25로 176 율곡스퀘어 6층",
+      lat: 36.816274,
+      lng: 127.108932,
     },
     {
       hospital: "서울프라임병원",
       distance: "10km",
       location: "충남 천안시 서북구 불당25로 226 골든스퀘어Ⅱ2층~4층",
+      lat: 36.82096,
+      lng: 127.109911,
     },
     {
       hospital: "마디손정형외과병원",
       distance: "13km",
       location: "충남 천안시 서북구 불당34길 18",
+      lat: 36.806313,
+      lng: 127.106505,
     },
     {
       hospital: "연세나무병원",
       distance: "3km",
       location: "충남 천안시 서북구 불당21로 67-18 7~9층 연세나무병원",
+      lat: 36.814151,
+      lng: 127.108735,
     },
     {
       hospital: "쌍용메디컬의원",
       distance: "34km",
       location: "충남 천안시 서북구 월봉로 85 쌍용메디칼",
+      lat: 36.798328,
+      lng: 127.117961,
     },
   ];
 
@@ -94,6 +105,8 @@ function Result() {
   };
 
   const pattern = /([^가-힣\x20])/i;
+
+  const a = ["🥇", "🥈", "🥉", undefined, undefined];
 
   const postInfo = async () => {
     if (pattern.test(value)) {
@@ -139,14 +152,16 @@ function Result() {
           </DetailBox>
           <ResultBox>
             <List>
-              {data.map((item) => {
+              {data.map((item, index) => {
                 return (
                   <Item>
+                    <Medal>{a[index]}</Medal>
                     <ItemInfo>
                       <Label>영업중</Label>
                       <Name>{item.hospital}</Name>
                       <Span>{item.distance}</Span>
                     </ItemInfo>
+
                     <ItemInfo>
                       <span style={{ fontSize: 11, marginLeft: 5 }}>
                         상세 주소

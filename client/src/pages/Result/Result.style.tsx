@@ -88,6 +88,7 @@ export const List = styled.ul`
 `;
 
 export const Item = styled.li`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -96,7 +97,6 @@ export const Item = styled.li`
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 9px;
   opacity: 1;
-
   gap: 10px;
 `;
 export const ItemInfo = styled.div`
@@ -144,4 +144,12 @@ export const Img = styled.div`
   background-size: cover;
   display: flex;
   margin-right: 300px;
+`;
+
+export const Medal = styled.div`
+  display: flex;
+  right: 0px;
+  top: -3px;
+  position: absolute;
+  font-size: 35px;
 `;
