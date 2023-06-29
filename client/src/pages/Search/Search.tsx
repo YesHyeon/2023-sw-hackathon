@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from "react";
+
 import {
   Btn,
   Box,
@@ -8,12 +9,12 @@ import {
   Wraaper,
   Title,
   Contents,
-} from './Search.style';
-import useGeolocation from 'react-hook-geolocation';
+} from "./Search.style";
+import useGeolocation from "react-hook-geolocation";
 
 function Search() {
   const geolocation = useGeolocation();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const onChange = (event: any) => setValue(event.target.value);
   const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
 
@@ -21,7 +22,7 @@ function Search() {
     const getCurrentPosBtn = () => {
       navigator.geolocation.getCurrentPosition(
         getPosSuccess,
-        () => alert('위치 정보를 가져오는데 실패했습니다.'),
+        () => alert("위치 정보를 가져오는데 실패했습니다."),
         {
           enableHighAccuracy: true,
           maximumAge: 30000,

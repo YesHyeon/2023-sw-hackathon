@@ -1,4 +1,4 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
 export const Wraaper = styled.main``;
 export const Container = styled.div`
@@ -38,14 +38,23 @@ export const Contents = styled.div`
 export const Btn = styled.button`
   height: 52px;
   background: ${(props) =>
-    props.disabled ? 'grey' : '#4E6AFF 0% 0% no-repeat padding-box;'};
+    props.disabled ? "grey" : "#4E6AFF 0% 0% no-repeat padding-box;"};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 52px;
+  margin-top: 30px;
+  background: ${(props) =>
+    props.disabled ? "grey" : "#4E6AFF 0% 0% no-repeat padding-box;"};
   border-radius: 13px;
   opacity: 1;
   border: none;
   /* UI Properties */
   text-align: center;
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
+  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
+  letter-spacing: -2.5px;
+  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
   font: normal normal 800 25px/29px Nanum Gothic;
 `;
 export const Box = styled.div`
@@ -71,4 +80,19 @@ export const Detail = styled.div`
   color: #6f7070;
   opacity: 1;
   font-size: 20px;
+`;
+
+export const KeywordBox = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+`;
+export const KeywordBtn = styled.button`
+  background: #ffffff 0% 0% no-repeat padding-box;
+  border-radius: 9px;
+  opacity: 1;
+  width: 100px;
+  height: 50px;
+  border: none;
 `;
