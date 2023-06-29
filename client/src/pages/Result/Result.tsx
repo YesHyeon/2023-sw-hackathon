@@ -16,10 +16,11 @@ import {
   Label,
   Name,
 } from './Result.style';
-import { useLocation } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 
 function Result() {
   const { state } = useLocation();
+  const navigate = useNavigate();
   console.log(state);
 
   const data = [
@@ -49,6 +50,10 @@ function Result() {
       location: '충남 천안시 서북구 월봉로 85 쌍용메디칼',
     },
   ];
+
+  const handleInitButtonClick = () => {
+    navigate('/');
+  };
 
   return (
     <Wraaper>
@@ -90,7 +95,13 @@ function Result() {
               })}
             </List>
           </ResultBox>
-          <Btn>처음으로 돌아가기</Btn>
+          <Btn
+            onClick={() => {
+              handleInitButtonClick();
+            }}
+          >
+            처음으로 돌아가기
+          </Btn>
         </Box>
       </Container>
     </Wraaper>
