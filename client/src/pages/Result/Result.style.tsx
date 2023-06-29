@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-
+import styled from "@emotion/styled";
+import select from "../../img/select.png";
 export const Wraaper = styled.main``;
 export const Container = styled.div`
   display: flex;
@@ -36,19 +36,19 @@ export const Contents = styled.div`
 `;
 
 export const Btn = styled.button`
-  height: 52px;
+  height: 40px;
   background: ${(props) =>
-    props.disabled ? 'grey' : '#4E6AFF 0% 0% no-repeat padding-box;'};
+    props.disabled ? "grey" : "#4E6AFF 0% 0% no-repeat padding-box;"};
   border-radius: 13px;
   opacity: 1;
   border: none;
   /* UI Properties */
   text-align: center;
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
+  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
   border: none;
 
-  font: normal normal 800 25px/29px Nanum Gothic;
+  font: normal normal 800 20px Nanum Gothic;
   cursor: pointer;
 `;
 export const Box = styled.div`
@@ -62,11 +62,10 @@ export const DetailBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  text-align: center;
   letter-spacing: -2px;
   color: #6f7070;
   opacity: 1;
+  gap: 10px;
 `;
 export const Detail = styled.div`
   text-align: center;
@@ -135,4 +134,14 @@ export const Name = styled.div`
   letter-spacing: -1.43px;
   color: #000000;
   opacity: 1;
+`;
+
+export const Img = styled.div`
+  background-image: url(${select});
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background-size: cover;
+  display: flex;
+  margin-right: 300px;
 `;

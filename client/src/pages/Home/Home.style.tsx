@@ -1,4 +1,6 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
+import home from "../../img/home.png";
+import start from "../../img/start.png";
 
 export const Wraaper = styled.main``;
 
@@ -56,4 +58,24 @@ export const Title = styled.div`
   opacity: 1;
   width: 190px;
   height: 60px;
+`;
+
+export const Circle = styled.div`
+  background-image: url(${home});
+  width: 290px;
+  height: 300px;
+  background-size: cover;
+  display: flex;
+  align-self: center;
+`;
+
+export const Img = styled.div`
+  position: absolute;
+  background-image: url(${start});
+  background-size: cover;
+  width: 50px;
+  height: 40px;
+  bottom: 100px;
+  display: flex;
+  align-self: center;
 `;

@@ -9,6 +9,7 @@ import {
   Wraaper,
   Title,
   Contents,
+  Img,
 } from "./Search.style";
 import axios from "axios";
 
@@ -98,6 +99,7 @@ const Search = () => {
           <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
             병원찾기
           </Btn>
+          <Img />
         </Box>
         {isLoading ? <Loading /> : null}
       </Container>

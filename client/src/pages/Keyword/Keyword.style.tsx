@@ -1,5 +1,5 @@
-import styled from '@emotion/styled';
-
+import styled from "@emotion/styled";
+import select from "../../img/select.png";
 export const Wraaper = styled.main``;
 export const Container = styled.div`
   display: flex;
@@ -38,7 +38,7 @@ export const Contents = styled.div`
 
 export const Btn = styled.button<{ selected: boolean }>`
   height: 52px;
-  background-color: ${(props) => (props.selected ? '#4E6AFF' : '#707070')};
+  background-color: ${(props) => (props.selected ? "#4E6AFF" : "#707070")};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -50,9 +50,9 @@ export const Btn = styled.button<{ selected: boolean }>`
   /* UI Properties */
   text-align: center;
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
+  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
+  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
   font: normal normal 800 25px/29px Nanum Gothic;
   cursor: pointer;
 `;
@@ -86,12 +86,12 @@ export const KeywordBox = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 25px;
 `;
 export const KeywordBtn = styled.button<{ selected: boolean }>`
   background: ${(props) =>
-    props.selected ? '#4E6AFF 0% 0% no-repeat padding-box;' : 'white'};
-  color: ${(props) => (props.selected ? 'white ' : 'black')};
+    props.selected ? "#4E6AFF 0% 0% no-repeat padding-box;" : "white"};
+  color: ${(props) => (props.selected ? "white " : "black")};
   border-radius: 9px;
   opacity: 1;
   width: 100px;
@@ -100,4 +100,12 @@ export const KeywordBtn = styled.button<{ selected: boolean }>`
   font-size: 15px;
   font-weight: bold;
   cursor: pointer;
+`;
+export const Img = styled.div`
+  background-image: url(${select});
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  position: absolute;
+  left: 110px;
 `;
