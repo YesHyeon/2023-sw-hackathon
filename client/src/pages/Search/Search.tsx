@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from 'react';
 
 import {
   Btn,
@@ -9,16 +9,24 @@ import {
   Wraaper,
   Title,
   Contents,
-} from "./Search.style";
-import axios from "axios";
+} from './Search.style';
+import axios from 'axios';
 
-import useGeolocation from "react-hook-geolocation";
-import Loading from "../../components/Loading/Loading";
-import { useNavigate } from "react-router-dom";
+import useGeolocation from 'react-hook-geolocation';
+import Loading from '../../components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
+import {
+  GoogleMap,
+  useJsApiLoader,
+  Polygon,
+  Marker,
+  Circle,
+  InfoWindow,
+} from '@react-google-maps/api';
 
 const Search = () => {
   const geolocation = useGeolocation();
-  const [value, setValue] = useState("");
+  const [value, setValue] = useState('');
   const onChange = (event: any) => setValue(event.target.value);
   const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const [isLoading, SetIsLoading] = useState(false);
@@ -29,7 +37,7 @@ const Search = () => {
     const getCurrentPosBtn = () => {
       navigator.geolocation.getCurrentPosition(
         getPosSuccess,
-        () => alert("위치 정보를 가져오는데 실패했습니다."),
+        () => alert('위치 정보를 가져오는데 실패했습니다.'),
         {
           enableHighAccuracy: true,
           maximumAge: 30000,
@@ -59,14 +67,14 @@ const Search = () => {
 
   const postInfo = async () => {
     if (pattern.test(value)) {
-      return alert("ㄴㄴ");
+      return alert('오타가 감지되었습니다. ');
     }
 
     SetIsLoading(true);
     setTimeout(() => {
       SetIsLoading(false);
 
-      navigate("/result", { state: value });
+      navigate('/result', { state: value });
     }, 3000);
     const data = await axios
       .post(`http://localhost:3000/hospital`, {
