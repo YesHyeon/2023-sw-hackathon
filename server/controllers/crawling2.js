@@ -61,16 +61,25 @@ const handleCrawling = async (hospital, keyword, type) => {
     const blogUrls = urls.map((url) =>
       url.replace(/"typeName":"블로그","url":"/g, "").replace(/"/g, "")
     );
-    const reviews = await Promise.all(
-      blogUrls.map(async (url) => {
-        const html = await axios.get(url);
-        const $ = cheerio.load(html.data);
-        let text = $("div.se-main-container").text();
-        text = text.replace(/\s\s/g, "");
-        text = text.replace(/\n/g, "");
-        return text;
-      })
-    );
+    const reviews = [];
+    for (let i = 0; i < Math.min(blogUrls.length, 3); i++) {
+      const html = await axios.get(blogUrls[i]);
+      const $ = cheerio.load(html.data);
+      let text = $("div.se-main-container").text();
+      text = text.replace(/\s\s/g, "");
+      text = text.replace(/\n/g, "");
+      reviews.push(text);
+    }
+    // const reviews = await Promise.all(
+    //   blogUrls.map(async (url) => {
+    //     const html = await axios.get(url);
+    //     const $ = cheerio.load(html.data);
+    //     let text = $("div.se-main-container").text();
+    //     text = text.replace(/\s\s/g, "");
+    //     text = text.replace(/\n/g, "");
+    //     return text;
+    //   })
+    // );
     return reviews;
     // const html2 = await axios.get(blogUrls[0]);
     // const $ = cheerio.load(html2.data);

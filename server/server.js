@@ -40,36 +40,28 @@ app.use("/api/hospital", async (req, res) => {
     "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(4);
   const response = await axios.get(url + queryParams);
   const hospitals = response.data.response.body.items.item;
-  console.log(hospitals);
   // 잠시 주석
   // hospital.filter((item) => {
   //   return item.dutyName.includes(type);
   // });
-  //const result = hospitals.map((item) => crawling(item, keyword, type));
-  //console.log(result);
-  //const reviews = await crawling(hospitals[1], keyword, type);
-  const result = [
-    {
-      hospital: hospitals[1]["dutyName"],
+  const results = [];
+  let count = 0;
+  for (let i = 0; i < hospitals.length; i++) {
+    const reviews = await crawling(hospitals[i], keyword, type);
+    if (reviews == null) {
+      continue;
+    }
+    results.push({
+      hospital: hospitals[i]["dutyName"],
       keyword: keyword,
-      reviews: await crawling(hospitals[1], keyword, type),
-    },
-    {
-      hospital: hospitals[2]["dutyName"],
-      keyword: keyword,
-      reviews: await crawling(hospitals[2], keyword, type),
-    },
-    {
-      hospital: hospitals[3]["dutyName"],
-      keyword: keyword,
-      reviews: await crawling(hospitals[3], keyword, type),
-    },
-  ];
-  console.log(result);
-
-  //   if (reviews != null) {
-  //   }
-  //   console.log(reviews);
+      reviews: reviews,
+    });
+    count++;
+    if (count == 3) {
+      break;
+    }
+  }
+  console.log(results);
 });
 
 app.use("/api/crawling", require("./routes/crawling"));
