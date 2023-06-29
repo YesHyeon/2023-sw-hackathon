@@ -10,8 +10,9 @@ import {
   Contents,
 } from './Search.style';
 import useGeolocation from 'react-hook-geolocation';
+import axios from 'axios';
 
-function Search() {
+const Search = () => {
   const geolocation = useGeolocation();
   const [value, setValue] = useState('');
   const onChange = (event: any) => setValue(event.target.value);
@@ -47,6 +48,18 @@ function Search() {
     getLocation();
   }, []);
 
+  const postInfo = async () => {
+    const data = await axios
+      .post(`http://localhost:3000/hospital`, {
+        type: value,
+        lat: currentLocation.lat,
+        lng: currentLocation.lng,
+      })
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e));
+    return data;
+  };
+
   return (
     <Wraaper>
       <Container>
@@ -64,12 +77,12 @@ function Search() {
             value={value}
             placeholder="입력"
           />
-          <Btn type="submit" disabled={!value}>
+          <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
             병원찾기
           </Btn>
         </Box>
       </Container>
     </Wraaper>
   );
-}
+};
 export default Search;

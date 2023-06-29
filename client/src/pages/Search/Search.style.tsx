@@ -56,6 +56,7 @@ export const Btn = styled.button`
   letter-spacing: -2.5px;
   color: ${(props) => (props.disabled ? 'white' : 'white')};
   font: normal normal 800 25px/29px Nanum Gothic;
+  cursor: pointer;
 `;
 export const Box = styled.div`
   display: flex;
