@@ -99,6 +99,13 @@ export const Item = styled.li`
   opacity: 1;
 
   gap: 10px;
+
+  cursor: pointer;
+
+  :hover {
+    border: 1px solid;
+    border-color: #4e6aff;
+  }
 `;
 export const ItemInfo = styled.div`
   display: flex;
@@ -135,4 +142,9 @@ export const Name = styled.div`
   letter-spacing: -1.43px;
   color: #000000;
   opacity: 1;
+`;
+
+export const GoogleMapWrapper = styled.div`
+  width: 300px;
+  height: 300px;
 `;

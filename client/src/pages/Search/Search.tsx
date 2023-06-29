@@ -15,6 +15,8 @@ import axios from 'axios';
 import useGeolocation from 'react-hook-geolocation';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { locationState } from '../../atoms/recoilAtomCurrentLocation';
 
 const Search = () => {
   const geolocation = useGeolocation();
@@ -22,10 +24,11 @@ const Search = () => {
   const onChange = (event: any) => setValue(event.target.value);
   const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const [isLoading, SetIsLoading] = useState(false);
+  const [location, setLocation] = useRecoilState(locationState);
 
   const navigate = useNavigate();
 
-  const getLocation = useCallback(() => {
+  const getLocation = useCallback(async () => {
     const getCurrentPosBtn = () => {
       navigator.geolocation.getCurrentPosition(
         getPosSuccess,
@@ -46,14 +49,16 @@ const Search = () => {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude,
       });
+
+      setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     };
 
     getCurrentPosBtn();
-  }, []);
+  }, [location, currentLocation]);
 
-  // useEffect(() => {
-  //   getLocation();
-  // }, []);
+  useEffect(() => {
+    getLocation();
+  }, []);
 
   const pattern = /([^가-힣\x20])/i;
 
@@ -61,14 +66,18 @@ const Search = () => {
     if (pattern.test(value)) {
       return alert('오타가 감지되었습니다. ');
     }
-    getLocation();
 
     SetIsLoading(true);
     setTimeout(() => {
       SetIsLoading(false);
+      const data = {
+        value: value,
+        currentLocation: currentLocation,
+      };
 
-      navigate('/result', { state: value });
+      navigate('/result', { state: data });
     }, 3000);
+
     const data = await axios
       .post(`http://localhost:3000/hospital`, {
         type: value,
