@@ -12,6 +12,8 @@ export const Container = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   justify-content: space-around;
   gap: 10px;
+  z-index: 100;
+  position: fixed;
 `;
 export const Btn = styled.div`
   height: 52px;
