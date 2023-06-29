@@ -8,6 +8,7 @@ import Community from "./pages/Community/Community";
 import Home from "./pages/Home/Home";
 import Search from "./pages/Search/Search";
 import Result from "./pages/Result/Result";
+import Keyword from "./pages/Keyword/Keyword";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                 <Route path="/home" element={<Home />} />
                 <Route path="/search" element={<Search />} />
                 <Route path="/result" element={<Result />} />
+                <Route path="/keyword" element={<Keyword />} />
             </Routes>
         </Router>
     );
