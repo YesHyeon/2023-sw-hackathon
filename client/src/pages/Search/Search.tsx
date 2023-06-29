@@ -15,14 +15,6 @@ import axios from 'axios';
 import useGeolocation from 'react-hook-geolocation';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
-import {
-  GoogleMap,
-  useJsApiLoader,
-  Polygon,
-  Marker,
-  Circle,
-  InfoWindow,
-} from '@react-google-maps/api';
 
 const Search = () => {
   const geolocation = useGeolocation();
@@ -59,9 +51,9 @@ const Search = () => {
     getCurrentPosBtn();
   }, []);
 
-  useEffect(() => {
-    getLocation();
-  }, []);
+  // useEffect(() => {
+  //   getLocation();
+  // }, []);
 
   const pattern = /([^가-힣\x20])/i;
 
@@ -69,6 +61,7 @@ const Search = () => {
     if (pattern.test(value)) {
       return alert('오타가 감지되었습니다. ');
     }
+    getLocation();
 
     SetIsLoading(true);
     setTimeout(() => {
