@@ -1,4 +1,5 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from "react";
+
 import {
   Btn,
   Box,
@@ -8,19 +9,20 @@ import {
   Wraaper,
   Title,
   Contents,
-} from './Search.style';
-import useGeolocation from 'react-hook-geolocation';
+} from "./Search.style";
+import useGeolocation from "react-hook-geolocation";
 
 function Search() {
   const geolocation = useGeolocation();
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const onChange = (event: any) => setValue(event.target.value);
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
 
   const getLocation = useCallback(() => {
     const getCurrentPosBtn = () => {
       navigator.geolocation.getCurrentPosition(
         getPosSuccess,
-        () => alert('위치 정보를 가져오는데 실패했습니다.'),
+        () => alert("위치 정보를 가져오는데 실패했습니다."),
         {
           enableHighAccuracy: true,
           maximumAge: 30000,
@@ -32,10 +34,11 @@ function Search() {
     const getPosSuccess = (pos: GeolocationPosition) => {
       console.log(pos.coords.longitude);
       console.log(pos.coords.latitude);
-      // 현재 위치(위도, 경도) 가져온다.
 
-      //   setA({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-      //   setMapLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      setCurrentLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      });
     };
 
     getCurrentPosBtn();
