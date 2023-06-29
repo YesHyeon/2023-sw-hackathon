@@ -1,4 +1,4 @@
-import styled from "@emotion/styled";
+import styled from '@emotion/styled';
 
 export const Wraaper = styled.main``;
 export const Container = styled.div`
@@ -38,24 +38,25 @@ export const Contents = styled.div`
 export const Btn = styled.button`
   height: 52px;
   background: ${(props) =>
-    props.disabled ? "grey" : "#4E6AFF 0% 0% no-repeat padding-box;"};
+    props.disabled ? 'grey' : '#4E6AFF 0% 0% no-repeat padding-box;'};
   display: flex;
   align-items: center;
   justify-content: center;
   height: 52px;
   margin-top: 30px;
   background: ${(props) =>
-    props.disabled ? "grey" : "#4E6AFF 0% 0% no-repeat padding-box;"};
+    props.disabled ? 'grey' : '#4E6AFF 0% 0% no-repeat padding-box;'};
   border-radius: 13px;
   opacity: 1;
   border: none;
   /* UI Properties */
   text-align: center;
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
+  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
   letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? "#707070" : "#FFFFFF")};
+  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
   font: normal normal 800 25px/29px Nanum Gothic;
+  cursor: pointer;
 `;
 export const Box = styled.div`
   display: flex;
@@ -88,11 +89,16 @@ export const KeywordBox = styled.div`
   gap: 10px;
   margin-top: 20px;
 `;
-export const KeywordBtn = styled.button`
-  background: #ffffff 0% 0% no-repeat padding-box;
+export const KeywordBtn = styled.button<{ selected: boolean }>`
+  background: ${(props) =>
+    props.selected ? '#4E6AFF 0% 0% no-repeat padding-box;' : 'white'};
+  color: ${(props) => (props.selected ? 'white ' : 'black')};
   border-radius: 9px;
   opacity: 1;
   width: 100px;
   height: 50px;
   border: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
 `;

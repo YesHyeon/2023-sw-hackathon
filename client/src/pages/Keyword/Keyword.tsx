@@ -12,8 +12,27 @@ import {
   Btn,
 } from './Keyword.style';
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Keyword() {
+  const [keywordValue, setKeywordValue] = useState('');
+  const [isSelected, SetIsSelected] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
+
   const keyword = [
     '내과',
     '비뇨기과',
@@ -31,11 +50,34 @@ function Keyword() {
     '항문외과',
   ];
 
+  useEffect(() => {
+    isSelected.map((item, index) => {
+      if (item == true) {
+        setKeywordValue(keyword[index]);
+      }
+    });
+  }, [isSelected]);
+
+  console.log(keywordValue);
+
   const navigate = useNavigate();
 
   const handleNextButtonClick = () => {
-    navigate('/keyword');
+    navigate('/search', { state: { isSelected } });
   };
+
+  const handleKeywordClick = (idx: number) => {
+    const data = isSelected.map((item, index) => {
+      if (index === idx) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    SetIsSelected(data);
+  };
+
+  console.log(isSelected);
 
   return (
     <Wraaper>
@@ -54,13 +96,17 @@ function Keyword() {
           <KeywordBox>
             {keyword.map((keyword, idx) => {
               return (
-                <>
-                  <KeywordBtn value={idx}>{keyword}</KeywordBtn>
-                </>
+                <KeywordBtn
+                  value={idx}
+                  onClick={() => handleKeywordClick(idx)}
+                  selected={isSelected[idx]}
+                >
+                  {keyword}
+                </KeywordBtn>
               );
             })}
           </KeywordBox>
-          <Btn>다음 단계로</Btn>
+          <Btn onClick={() => handleNextButtonClick()}>다음 단계로</Btn>
         </Box>
       </Container>
     </Wraaper>
