@@ -33,6 +33,7 @@ export const Contents = styled.div`
   font: normal normal normal 13px/17px Nanum Gothic;
   letter-spacing: -1.3px;
   color: #4e6aff;
+  white-space: pre-line;
 `;
 export const Input = styled.input`
   text-align: center;

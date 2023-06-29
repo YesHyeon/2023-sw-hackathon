@@ -88,8 +88,7 @@ function Keyword() {
           <TitleBox>
             <Title>가치가요</Title>
             <Contents>
-              병 이름을 입력하시면 우리 집 근처, 가장 알맞은 병원을
-              추천해드려요!
+              {`병 이름을 입력하시면 우리 집 근처 \n 가장 알맞은 병원을 추천해드려요!`}
             </Contents>
           </TitleBox>
           <DetailBox>
