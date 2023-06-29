@@ -17,7 +17,7 @@ services:
     container_name: server
     restart: "on-failure"
     expose:
-      - 3500
+      - 5000
     volumes:
       - "./server:/app"
       - "/app/node_modules"
