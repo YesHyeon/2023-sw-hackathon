@@ -1,15 +1,30 @@
 import styled from '@emotion/styled';
+import exp from 'constants';
 
-export const Wrapper = styled.main``;
+export const Wrapper = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 350px;
+  height: 350px;
+  background-color: white;
+  border-radius: 15px;
+`;
 
 export const Container = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  margin: 0px auto;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 412px;
   height: 100vh;
   margin: 0px auto;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
   justify-content: space-around;
   gap: 10px;
   z-index: 100;
@@ -67,7 +82,7 @@ export const BoxWrapper = styled.div`
 
   opacity: 1;
   width: 231px;
-  height: 231px;
+  height: 221px;
 
   background: #ffffff 0% 0% no-repeat padding-box;
   border: 1px solid #707070;
@@ -92,7 +107,29 @@ export const SubText = styled.div`
 `;
 
 export const GoogleMapWrapper = styled.div`
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 310px;
+  height: 230px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
 `;
+
+export const CloseButton = styled.div`
+  position: absolute;
+  top: 210px;
+  right: 50px;
+  color: grey;
+  cursor: pointer;
+`;
+
+export const TextWrapper = styled.div`
+  display: flex;
+  padding-top: 10px;
+`;
+export const LocationWrapper = styled.div`
+  display: flex;
+  font-size: 12px;
+`;
+
+export const MainWrapper = styled.div``;
