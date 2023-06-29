@@ -106,8 +106,8 @@ const Search = () => {
           />
           <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
             병원찾기
+            <Img />
           </Btn>
-          <Img />
         </Box>
         {isLoading ? <Loading /> : null}
       </Container>

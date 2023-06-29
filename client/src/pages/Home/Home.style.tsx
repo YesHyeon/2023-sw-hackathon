@@ -17,7 +17,6 @@ export const Container = styled.div`
 export const Btn = styled.div`
   height: 52px;
   width: 320px;
-
   display: flex;
   align-items: center;
   justify-content: center;
@@ -70,12 +69,12 @@ export const Circle = styled.div`
 `;
 
 export const Img = styled.div`
-  position: absolute;
   background-image: url(${start});
   background-size: cover;
   width: 50px;
   height: 40px;
-  bottom: 100px;
+  position: absolute;
+  bottom: 80px;
   display: flex;
-  align-self: center;
+  margin-left: 180px;
 `;

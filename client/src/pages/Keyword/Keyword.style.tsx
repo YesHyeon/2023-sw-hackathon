@@ -68,10 +68,10 @@ export const DetailBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   text-align: center;
   letter-spacing: -2px;
   color: #6f7070;
+  position: relative;
   opacity: 1;
 `;
 export const Detail = styled.div`
@@ -104,8 +104,9 @@ export const KeywordBtn = styled.button<{ selected: boolean }>`
 export const Img = styled.div`
   background-image: url(${select});
   width: 60px;
-  height: 60px;
+  height: 50px;
   background-size: cover;
   position: absolute;
-  left: 110px;
+  display: flex;
+  left: 30px;
 `;

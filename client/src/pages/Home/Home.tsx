@@ -16,8 +16,9 @@ function Home() {
           <Title>병원 맛집</Title>
         </Box>
         <Circle />
-        <Img />
+
         <Btn onClick={() => handleNextButtonClick()}>시작하기</Btn>
+        <Img />
       </Container>
     </Wrapper>
   );

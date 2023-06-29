@@ -47,6 +47,8 @@ export const Input = styled.input`
 `;
 export const Btn = styled.button`
   height: 52px;
+
+  position: relative;
   background: ${(props) =>
     props.disabled ? "#B4B4B4" : "#4E6AFF 0% 0% no-repeat padding-box;"};
   border-radius: 13px;
@@ -72,7 +74,6 @@ export const Img = styled.div`
   width: 50px;
   height: 40px;
   position: absolute;
-  margin-top: 145px;
-  left: 70px;
-
+  bottom: 5px;
+  left: -5px;
 `;
