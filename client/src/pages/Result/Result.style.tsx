@@ -47,13 +47,14 @@ export const Btn = styled.button`
   letter-spacing: -2.5px;
   color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
   border: none;
-  margin-top: 30px;
+
   font: normal normal 800 25px/29px Nanum Gothic;
+  cursor: pointer;
 `;
 export const Box = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
   padding: 0px 30px;
 `;
 
@@ -84,6 +85,7 @@ export const List = styled.ul`
   flex-direction: column;
   gap: 10px;
   padding-left: 0px;
+  overflow-x: hidden;
 `;
 
 export const Item = styled.li`
@@ -95,18 +97,20 @@ export const Item = styled.li`
   background: #ffffff 0% 0% no-repeat padding-box;
   border-radius: 9px;
   opacity: 1;
+
+  gap: 10px;
 `;
 export const ItemInfo = styled.div`
   display: flex;
   align-items: center;
   margin-left: 10px;
-  width: 100%;
+  width: 950%;
   gap: 10px;
 `;
 
 export const Span = styled.span`
   text-align: left;
-  font: normal normal normal 10px/38px Nanum Gothic;
+  font: normal normal normal 5px Nanum Gothic;
   letter-spacing: -0.95px;
   color: #646464;
   opacity: 1;
