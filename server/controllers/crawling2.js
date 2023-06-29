@@ -4,7 +4,8 @@ const chrome = require("selenium-webdriver/chrome");
 const cheerio = require("cheerio");
 
 //require("chromedriver");
-const run = async (req, res) => {
+const run = async (hospital, keyword, type) => {
+  console.log(hospital, keyword, type);
   // // 크롬 드라이버 실행
   // let driver = await new Builder().forBrowser("chrome").build();
   //headless로 크롬 드라이버 실행
@@ -20,10 +21,16 @@ const run = async (req, res) => {
     .build();
 
   try {
-    const keyword = req.query.keyword;
+    const searchName =
+      hospital["dutyName"] +
+      " " +
+      hospital["dutyAddr"].split(" ")[0] +
+      " " +
+      hospital["dutyAddr"].split(" ")[1];
     const url = `https://map.naver.com/v5/search/${encodeURIComponent(
-      keyword
+      searchName
     )}/place`;
+    console.log(searchName);
     // 특정 URL 생성
     await driver.get(url);
     // 페이지 로딩 대기 url이 바뀔때까지 대기
@@ -38,14 +45,13 @@ const run = async (req, res) => {
     const placeId = match[1];
     return await placeId;
   } catch (e) {
-    console.log(e);
   } finally {
     driver.quit();
   }
 };
-const handleCrawling = async (req, res) => {
+const handleCrawling = async (hospital, keyword, type) => {
   try {
-    const placeId = await run(req, res); // `run()` 함수를 호출하고 `placeId`를 해결
+    const placeId = await run(hospital, keyword, type); // `run()` 함수를 호출하고 `placeId`를 해결
     const reviewUrl = `https://pcmap.place.naver.com/hospital/${placeId}/review/ugc`;
     console.log(reviewUrl);
     const html = await axios.get(reviewUrl);
@@ -65,7 +71,7 @@ const handleCrawling = async (req, res) => {
         return text;
       })
     );
-    console.log(reviews);
+    return reviews;
     // const html2 = await axios.get(blogUrls[0]);
     // const $ = cheerio.load(html2.data);
     // let text = $("div.se-main-container").text();
@@ -77,11 +83,8 @@ const handleCrawling = async (req, res) => {
     //     console.log(html.data);
     //   });
     // });
-    return res.status(200).json({
-      blogUrls,
-    });
   } catch (error) {
-    console.error(error);
+    return null;
   }
 };
 
