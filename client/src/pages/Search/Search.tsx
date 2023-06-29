@@ -15,6 +15,7 @@ function Search() {
   const geolocation = useGeolocation();
   const [value, setValue] = useState('');
   const onChange = (event: any) => setValue(event.target.value);
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
 
   const getLocation = useCallback(() => {
     const getCurrentPosBtn = () => {
@@ -32,10 +33,11 @@ function Search() {
     const getPosSuccess = (pos: GeolocationPosition) => {
       console.log(pos.coords.longitude);
       console.log(pos.coords.latitude);
-      // 현재 위치(위도, 경도) 가져온다.
 
-      //   setA({ lat: pos.coords.latitude, lng: pos.coords.longitude });
-      //   setMapLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+      setCurrentLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      });
     };
 
     getCurrentPosBtn();
