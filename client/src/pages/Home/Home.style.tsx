@@ -1,63 +1,51 @@
-import styled from '@emotion/styled';
+import styled from "@emotion/styled";
 
-export const Wrapper = styled.div`
-  overflow-x: auto;
-`;
-
-export const Logo = styled.div``;
-
-export const Navigation = styled.div`
-  display: flex;
-  height: 50px;
-  justify-content: space-around;
-  align-items: center;
-  background-color: grey;
-  padding: 0px 40px;
-`;
-
-export const Input = styled.input`
-  width: 300px;
-`;
-
-export const NavBtn = styled.button``;
-
+export const Wraaper = styled.main``;
 export const Container = styled.div`
-  width: 1000px;
-  background-color: pink;
-  margin: auto;
+    display: flex;
+    flex-direction: column;
+    width: 375px;
+    height: 100vh;
+    margin: 0px auto;
+    background-color: #4e6aff;
+    justify-content: space-around;
+    gap: 10px;
 `;
-
+export const Btn = styled.div`
+    height: 40px;
+    width: 320px;
+    align-self: center;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 13px;
+    opacity: 1;
+    border: none;
+    /* UI Properties */
+    text-align: center;
+    letter-spacing: -2.5px;
+    color: #4e6aff;
+    font: normal normal 800 25px/29px Nanum Gothic;
+`;
 export const Box = styled.div`
-  padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 `;
-
+export const Span = styled.div`
+    font: normal normal bold 16px/19px Nanum Gothic;
+    letter-spacing: -1.6px;
+    color: #ffffff;
+    opacity: 1;
+    font-size: 16px;
+`;
 export const Title = styled.div`
-  margin-left: 10px;
-  margin-bottom: 10px;
-  background-color: white;
-  width: 200px;
-  height: 30px;
-  border-radius: 30px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    opacity: 1;
+    text-align: center;
+    font: normal normal 800 47px/54px Nanum Gothic;
+    letter-spacing: -4.46px;
+    color: #4e6aff;
+    opacity: 1;
+    width: 190px;
+    height: 60px;
 `;
-
-export const ItemBox = styled.div`
-  background-color: white;
-  margin: 10px;
-  padding: 30px;
-  width: 400px;
-  border-radius: 40px;
-`;
-
-export const Item = styled.div`
-  background-color: grey;
-  height: 100px;
-  margin: 5px;
-`;
-
-export const Contents = styled.div`
-  display: flex;
-`;
-
-export const Search = styled.div``;
-
-export const Category = styled.div``;
