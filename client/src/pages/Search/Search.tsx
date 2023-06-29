@@ -13,12 +13,17 @@ import {
 import axios from 'axios';
 
 import useGeolocation from 'react-hook-geolocation';
+import Loading from '../../components/Loading/Loading';
+import { useNavigate } from 'react-router-dom';
 
 const Search = () => {
   const geolocation = useGeolocation();
   const [value, setValue] = useState('');
   const onChange = (event: any) => setValue(event.target.value);
   const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
+  const [isLoading, SetIsLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const getLocation = useCallback(() => {
     const getCurrentPosBtn = () => {
@@ -51,6 +56,11 @@ const Search = () => {
   }, []);
 
   const postInfo = async () => {
+    SetIsLoading(true);
+    setTimeout(() => {
+      SetIsLoading(false);
+      navigate('/result');
+    }, 3000);
     const data = await axios
       .post(`http://localhost:3000/hospital`, {
         type: value,
@@ -83,6 +93,7 @@ const Search = () => {
             병원찾기
           </Btn>
         </Box>
+        {isLoading ? <Loading /> : null}
       </Container>
     </Wraaper>
   );
