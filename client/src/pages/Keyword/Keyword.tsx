@@ -16,6 +16,7 @@ import { useEffect, useState } from 'react';
 
 function Keyword() {
   const [keywordValue, setKeywordValue] = useState('');
+  const [canGoNext, SetCanGoNext] = useState(false);
   const [isSelected, SetIsSelected] = useState([
     false,
     false,
@@ -54,6 +55,7 @@ function Keyword() {
     isSelected.map((item, index) => {
       if (item == true) {
         setKeywordValue(keyword[index]);
+        SetCanGoNext(true);
       }
     });
   }, [isSelected]);
@@ -106,7 +108,9 @@ function Keyword() {
               );
             })}
           </KeywordBox>
-          <Btn onClick={() => handleNextButtonClick()}>다음 단계로</Btn>
+          <Btn onClick={() => handleNextButtonClick()} selected={canGoNext}>
+            다음 단계로
+          </Btn>
         </Box>
       </Container>
     </Wraaper>
