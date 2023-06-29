@@ -10,25 +10,32 @@ import {
   KeywordBox,
   KeywordBtn,
   Btn,
-} from "./Keyword.style";
+} from './Keyword.style';
+import { useNavigate } from 'react-router-dom';
 
 function Keyword() {
   const keyword = [
-    "내과",
-    "비뇨기과",
-    "산부인과",
-    "신경과",
-    "신경외과",
-    "심장내과",
-    "안과",
-    "외과",
-    "이비인후과",
-    "정신과",
-    "정형외과",
-    "치과",
-    "피부과",
-    "항문외과",
+    '내과',
+    '비뇨기과',
+    '산부인과',
+    '신경과',
+    '신경외과',
+    '심장내과',
+    '안과',
+    '외과',
+    '이비인후과',
+    '정신과',
+    '정형외과',
+    '치과',
+    '피부과',
+    '항문외과',
   ];
+
+  const navigate = useNavigate();
+
+  const handleNextButtonClick = () => {
+    navigate('/keyword');
+  };
 
   return (
     <Wraaper>
