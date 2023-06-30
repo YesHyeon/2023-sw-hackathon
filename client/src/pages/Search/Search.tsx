@@ -9,12 +9,14 @@ import {
   Wraaper,
   Title,
   Contents,
+  Img,
 } from './Search.style';
 import axios from 'axios';
-
 import useGeolocation from 'react-hook-geolocation';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
+import { locationState } from '../../atoms/recoilAtomCurrentLocation';
 
 const Search = () => {
   const geolocation = useGeolocation();
@@ -22,10 +24,11 @@ const Search = () => {
   const onChange = (event: any) => setValue(event.target.value);
   const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const [isLoading, SetIsLoading] = useState(false);
+  const [location, setLocation] = useRecoilState(locationState);
 
   const navigate = useNavigate();
 
-  const getLocation = useCallback(() => {
+  const getLocation = useCallback(async () => {
     const getCurrentPosBtn = () => {
       navigator.geolocation.getCurrentPosition(
         getPosSuccess,
@@ -46,21 +49,35 @@ const Search = () => {
         lat: pos.coords.latitude,
         lng: pos.coords.longitude,
       });
+
+      setLocation({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     };
 
     getCurrentPosBtn();
-  }, []);
+  }, [location, currentLocation]);
 
   useEffect(() => {
     getLocation();
   }, []);
 
+  const pattern = /([^가-힣\x20])/i;
+
   const postInfo = async () => {
+    if (pattern.test(value)) {
+      return alert('오타가 감지되었습니다. ');
+    }
+
     SetIsLoading(true);
     setTimeout(() => {
       SetIsLoading(false);
-      navigate('/result', { state: value });
+      const data = {
+        value: value,
+        currentLocation: currentLocation,
+      };
+
+      navigate('/result', { state: data });
     }, 3000);
+
     const data = await axios
       .post(`http://localhost:3000/hospital`, {
         type: value,
@@ -77,7 +94,7 @@ const Search = () => {
       <Container>
         <Box>
           <TitleBox>
-            <Title>가치가요</Title>
+            <Title>병원맛집</Title>
             <Contents>
               {`병 이름을 입력하시면 우리 집 근처\n가장 알맞은 병원을 추천해드려요!`}
             </Contents>
@@ -90,6 +107,7 @@ const Search = () => {
           />
           <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
             병원찾기
+            <Img />
           </Btn>
         </Box>
         {isLoading ? <Loading /> : null}

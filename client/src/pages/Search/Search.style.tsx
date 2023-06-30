@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-
+import searchbtn from '../../img/searchbtn.png';
 export const Wraaper = styled.main``;
 export const Container = styled.div`
   display: flex;
@@ -47,6 +47,8 @@ export const Input = styled.input`
 `;
 export const Btn = styled.button`
   height: 52px;
+
+  position: relative;
   background: ${(props) =>
     props.disabled ? '#B4B4B4' : '#4E6AFF 0% 0% no-repeat padding-box;'};
   border-radius: 13px;
@@ -64,4 +66,14 @@ export const Box = styled.div`
   flex-direction: column;
   padding: 0px 30px;
   gap: 30px;
+`;
+
+export const Img = styled.div`
+  background-image: url(${searchbtn});
+  background-size: cover;
+  width: 50px;
+  height: 40px;
+  position: absolute;
+  bottom: 5px;
+  left: -5px;
 `;

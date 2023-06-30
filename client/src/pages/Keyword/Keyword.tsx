@@ -10,6 +10,7 @@ import {
   KeywordBox,
   KeywordBtn,
   Btn,
+  Img,
 } from './Keyword.style';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
@@ -86,13 +87,14 @@ function Keyword() {
       <Container>
         <Box>
           <TitleBox>
-            <Title>가치가요</Title>
+            <Title>병원맛집</Title>
             <Contents>
               {`병 이름을 입력하시면 우리 집 근처 \n 가장 알맞은 병원을 추천해드려요!`}
             </Contents>
           </TitleBox>
           <DetailBox>
             <Detail>진료과목을 선택해주세요.</Detail>
+            <Img />
           </DetailBox>
           <KeywordBox>
             {keyword.map((keyword, idx) => {
