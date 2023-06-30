@@ -1,3 +1,5 @@
+import { useCallback, useEffect, useState } from 'react';
+import { Input } from '../Search/Search.style';
 import {
   Btn,
   Box,
@@ -16,6 +18,8 @@ import {
   Label,
   Name,
   GoogleMapWrapper,
+  Img,
+  Medal,
 } from './Result.style';
 import { useLocation, useNavigate } from 'react-router';
 import {
@@ -26,21 +30,26 @@ import {
   Circle,
   InfoWindow,
 } from '@react-google-maps/api';
-import { useMemo, useState, useCallback } from 'react';
+
 import Map from '../../components/Map/Map';
+import Loading from '../../components/Loading/Loading';
+import axios from 'axios';
 
 function Result() {
   const { state } = useLocation();
   const [seeMap, setSeeMap] = useState([false, false, false, false, false]);
   const navigate = useNavigate();
   console.log(state);
-  const center = useMemo(() => ({ lat: 12.345, lng: 678.91 }), []);
 
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyDRQVy_3xtkSuN-0k7Xvi20BPCqWRP2fqk',
   });
 
+  const onChange = (event: any) => setValue(event.target.value);
+  const [value, setValue] = useState('');
+  const [isLoading, SetIsLoading] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState({ lat: 0, lng: 0 });
   const data = [
     {
       hospital: '오름정형외과의원',
@@ -79,8 +88,64 @@ function Result() {
     },
   ];
 
+  const getLocation = useCallback(() => {
+    const getCurrentPosBtn = () => {
+      navigator.geolocation.getCurrentPosition(
+        getPosSuccess,
+        () => alert('위치 정보를 가져오는데 실패했습니다.'),
+        {
+          enableHighAccuracy: true,
+          maximumAge: 30000,
+          timeout: 27000,
+        }
+      );
+    };
+
+    const getPosSuccess = (pos: GeolocationPosition) => {
+      console.log(pos.coords.longitude);
+      console.log(pos.coords.latitude);
+
+      setCurrentLocation({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude,
+      });
+    };
+
+    getCurrentPosBtn();
+  }, []);
+
+  useEffect(() => {
+    getLocation();
+  }, []);
+
   const handleInitButtonClick = () => {
     navigate('/');
+  };
+
+  const pattern = /([^가-힣\x20])/i;
+
+  const a = ['🥇', '🥈', '🥉', undefined, undefined];
+
+  const postInfo = async () => {
+    if (pattern.test(value)) {
+      return alert('ㄴㄴ');
+    }
+
+    SetIsLoading(true);
+    setTimeout(() => {
+      SetIsLoading(false);
+
+      navigate('/result', { state: value });
+    }, 3000);
+    const data = await axios
+      .post(`http://localhost:3000/hospital`, {
+        type: value,
+        lat: currentLocation.lat,
+        lng: currentLocation.lng,
+      })
+      .then((res) => console.log(res.data))
+      .catch((e) => console.log(e));
+    return data;
   };
 
   const handleItemClick = useCallback(
@@ -109,7 +174,16 @@ function Result() {
           </TitleBox>
           <DetailBox>
             <Detail>{`${state.value}에 대한 검색 결과입니다`}</Detail>
-            <Span>후기가 좋은 순서대로 위에서부터 나열되었습니다.</Span>
+            <Img />
+            <Input
+              onChange={onChange}
+              type="text"
+              value={value}
+              placeholder="입력"
+            />
+            <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
+              다시 찾기
+            </Btn>
           </DetailBox>
           <ResultBox>
             <List>
@@ -124,6 +198,7 @@ function Result() {
                         handleItemClick(idx);
                       }}
                     >
+                      <Medal>{a[idx]}</Medal>
                       <ItemInfo>
                         <Label>영업중</Label>
                         <Name>{itm.hospital}</Name>
@@ -157,19 +232,8 @@ function Result() {
             처음으로 돌아가기
           </Btn>
         </Box>
+        {isLoading ? <Loading /> : null}
       </Container>
-      <GoogleMapWrapper>
-        <GoogleMap
-          zoom={18}
-          center={center}
-          mapContainerClassName="map-container"
-        >
-          {/* <Marker
-            position={center}
-            icon={{ url: '/images/icons/map_marker.svg', scale: 5 }}
-          /> */}
-        </GoogleMap>
-      </GoogleMapWrapper>
     </Wraaper>
   ) : null;
 }

@@ -9,9 +9,9 @@ import {
   Wraaper,
   Title,
   Contents,
+  Img,
 } from './Search.style';
 import axios from 'axios';
-
 import useGeolocation from 'react-hook-geolocation';
 import Loading from '../../components/Loading/Loading';
 import { useNavigate } from 'react-router-dom';
@@ -107,6 +107,7 @@ const Search = () => {
           />
           <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
             병원찾기
+            <Img />
           </Btn>
         </Box>
         {isLoading ? <Loading /> : null}
