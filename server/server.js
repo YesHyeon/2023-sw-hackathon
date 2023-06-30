@@ -10,6 +10,7 @@ const credentials = require("./utils/middleware/credentials");
 const cookieParser = require("cookie-parser");
 const axios = require("axios");
 const crawling = require("./controllers/crawling2").handleCrawling;
+const { callChatGPT } = require("./routes/callGPT");
 
 const PORT = process.env.PORT || 3000;
 
@@ -37,16 +38,17 @@ app.use("/api/hospital", async (req, res) => {
   queryParams +=
     "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent(1);
   queryParams +=
-    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(10);
+    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent(20);
   const response = await axios.get(url + queryParams);
-  const hospitals = response.data.response.body.items.item;
-  // 잠시 주석
-  // hospital.filter((item) => {
-  //   return item.dutyName.includes(type);
-  // });
+  let hospitalse = response.data.response.body.items.item;
+  //잠시 주석
+  const hospitals = hospitalse.filter((item) => {
+    console.log(item);
+    return item.dutyName.includes(type);
+  });
+  console.log(hospitals);
   const results = [];
   let count = 0;
-  const maxLength = 100;
   for (let i = 0; i < hospitals.length; i++) {
     const reviews = await crawling(hospitals[i], keyword, type);
     if (reviews == null) {
@@ -54,6 +56,10 @@ app.use("/api/hospital", async (req, res) => {
     }
     results.push({
       hospital: hospitals[i]["dutyName"],
+      distance: `${hospitals[i]["distance"]}km`,
+      latitude: hospitals[i]["latitude"],
+      longitude: hospitals[i]["longitude"],
+      location: hospitals[i]["dutyAddr"],
       keyword: keyword,
       reviews: reviews,
     });
@@ -62,12 +68,30 @@ app.use("/api/hospital", async (req, res) => {
       break;
     }
   }
-  console.log(results);
-
-  // nodeSummary.summarize(inputString, (summary) => {
-  //   const summarizedString = summary.substring(0, maxLength);
-  //   console.log(summarizedString); // Output: 요약된 문자열
-  // });
+  const data = [];
+  for (let i = 0; i < results.length; i++) {
+    const response2 = await callChatGPT(JSON.stringify(results[i]));
+    console.log(response2);
+    results[i].response = JSON.parse(response2);
+    data.push({
+      hospitals: results[i].hospital,
+      distance: results[i].distance,
+      grade: results[i].response["점수"],
+      location: results[i].location,
+      review: `장점 : ${results[i].response["장점"]} \n단점 ${results[i].response["단점"]}`,
+      latitude: results[i].latitude,
+      longitude: results[i].longitude,
+    });
+  }
+  console.log(data);
+  return res.json({ data: data });
+  //const response2 = await callChatGPT(JSON.stringify(prompt[0]));
+  // if (response2) {
+  //   console.log(response2);
+  //   res.json({ response: response2 });
+  // } else {
+  //   res.status(500).json({ error: "Failed to get response from ChatGPT API" });
+  // }
 });
 
 app.use("/api/crawling", require("./routes/crawling"));
