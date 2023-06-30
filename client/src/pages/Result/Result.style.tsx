@@ -36,19 +36,19 @@ export const Contents = styled.div`
 `;
 
 export const Btn = styled.button`
-  height: 40px;
+  height: 30px;
   background: ${(props) =>
     props.disabled ? 'grey' : '#4E6AFF 0% 0% no-repeat padding-box;'};
-  border-radius: 13px;
+
   opacity: 1;
   border: none;
   /* UI Properties */
   text-align: center;
-  letter-spacing: -2.5px;
-  color: ${(props) => (props.disabled ? '#707070' : '#FFFFFF')};
+  letter-spacing: px;
+  color: ${(props) => (props.disabled ? 'white' : '#FFFFFF')};
   border: none;
 
-  font: normal normal 800 20px Nanum Gothic;
+  fonst-size: 200px;
   cursor: pointer;
 `;
 export const Box = styled.div`
@@ -73,6 +73,7 @@ export const Detail = styled.div`
   color: #6f7070;
   opacity: 1;
   font-size: 20px;
+  white-space: pre-line;
 `;
 export const ResultBox = styled.div`
   height: 400px;
@@ -156,6 +157,7 @@ export const Img = styled.div`
   background-size: cover;
   display: flex;
   margin-right: 300px;
+  top: 140px;
 `;
 
 export const Medal = styled.div`
@@ -164,4 +166,23 @@ export const Medal = styled.div`
   top: -3px;
   position: absolute;
   font-size: 35px;
+`;
+
+export const Input = styled.input`
+  text-align: center;
+  height: 41px;
+  width: 150px;
+  border: none;
+  border-radius: 10px;
+  font: normal normal normal 20px/27px Nanum Gothic;
+  letter-spacing: -2px;
+  color: #6f7070;
+  opacity: 1;
+`;
+
+export const InputWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 `;

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { Input } from '../Search/Search.style';
+
 import {
   Btn,
   Box,
@@ -20,6 +20,8 @@ import {
   GoogleMapWrapper,
   Img,
   Medal,
+  Input,
+  InputWrapper,
 } from './Result.style';
 import { useLocation, useNavigate } from 'react-router';
 import {
@@ -170,20 +172,22 @@ function Result() {
       <Container>
         <Box>
           <TitleBox>
-            <Title>가치가요</Title>
+            <Title>병원맛집</Title>
           </TitleBox>
           <DetailBox>
-            <Detail>{`${state.value}에 대한 검색 결과입니다`}</Detail>
+            <Detail>{`현재 위치와 가까우면서 "${state.value}" 치료의 \n 후기가 가장 좋은 병원입니다`}</Detail>
             <Img />
-            <Input
-              onChange={onChange}
-              type="text"
-              value={value}
-              placeholder="입력"
-            />
-            <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
-              다시 찾기
-            </Btn>
+            <InputWrapper>
+              <Input
+                onChange={onChange}
+                type="text"
+                value={value}
+                placeholder="입력"
+              />
+              <Btn type="submit" disabled={!value} onClick={() => postInfo()}>
+                다시 찾기
+              </Btn>
+            </InputWrapper>
           </DetailBox>
           <ResultBox>
             <List>

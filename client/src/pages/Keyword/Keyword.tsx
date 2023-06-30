@@ -11,12 +11,12 @@ import {
   KeywordBtn,
   Btn,
   Img,
-} from "./Keyword.style";
-import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+} from './Keyword.style';
+import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 function Keyword() {
-  const [keywordValue, setKeywordValue] = useState("");
+  const [keywordValue, setKeywordValue] = useState('');
   const [canGoNext, SetCanGoNext] = useState(false);
   const [isSelected, SetIsSelected] = useState([
     false,
@@ -36,20 +36,20 @@ function Keyword() {
   ]);
 
   const keyword = [
-    "내과",
-    "비뇨기과",
-    "산부인과",
-    "신경과",
-    "신경외과",
-    "심장내과",
-    "안과",
-    "외과",
-    "이비인후과",
-    "정신과",
-    "정형외과",
-    "치과",
-    "피부과",
-    "항문외과",
+    '내과',
+    '비뇨기과',
+    '산부인과',
+    '신경과',
+    '신경외과',
+    '심장내과',
+    '안과',
+    '외과',
+    '이비인후과',
+    '정신과',
+    '정형외과',
+    '치과',
+    '피부과',
+    '항문외과',
   ];
 
   useEffect(() => {
@@ -66,7 +66,7 @@ function Keyword() {
   const navigate = useNavigate();
 
   const handleNextButtonClick = () => {
-    navigate("/search", { state: { isSelected } });
+    navigate('/search', { state: { isSelected } });
   };
 
   const handleKeywordClick = (idx: number) => {
@@ -87,7 +87,7 @@ function Keyword() {
       <Container>
         <Box>
           <TitleBox>
-            <Title>가치가요</Title>
+            <Title>병원맛집</Title>
             <Contents>
               {`병 이름을 입력하시면 우리 집 근처 \n 가장 알맞은 병원을 추천해드려요!`}
             </Contents>
@@ -102,7 +102,8 @@ function Keyword() {
                 <KeywordBtn
                   value={idx}
                   onClick={() => handleKeywordClick(idx)}
-                  selected={isSelected[idx]}>
+                  selected={isSelected[idx]}
+                >
                   {keyword}
                 </KeywordBtn>
               );

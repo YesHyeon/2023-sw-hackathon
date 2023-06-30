@@ -94,7 +94,7 @@ const Search = () => {
       <Container>
         <Box>
           <TitleBox>
-            <Title>가치가요</Title>
+            <Title>병원맛집</Title>
             <Contents>
               {`병 이름을 입력하시면 우리 집 근처\n가장 알맞은 병원을 추천해드려요!`}
             </Contents>
